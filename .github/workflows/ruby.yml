@@ -31,34 +31,3 @@ jobs:
         uses: ruby/setup-ruby@ec106b438a1ff6ff109590de34ddc62c540232e0
         with:
           ruby-version: 2.7
-
-      - name: Install dependent libraries
-        run: sudo apt-get install libpq-dev
-
-      - name: Install yarn
-      - uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: install
-
-      - name: Bundle install
-        run: |
-          gem install bundler
-          bundle install --jobs 4 --retry 3
-
-      - name: Setup Database
-        run: |
-          bundle exec rake db:prepare
-        env:
-          RAILS_ENV: test
-          DATABASE_USERNAME: postgres
-          DATABASE_PASSWORD: postgres
-          DATABASE_HOST: localhost
-
-      - name: Run RSpec
-        run: bundle exec rake
-        env:
-          RAILS_ENV: test
-          DATABASE_USERNAME: postgres
-          DATABASE_PASSWORD: postgres
-          DATABASE_HOST: localhost
-          REDIS_URL: redis://localhost:6379/0

@@ -13,7 +13,7 @@ jobs:
         environment:
           POSTGRES_USER: app-test
           POSTGRES_DB: app-test_test
-          POSTGRES_PASSWORD: ""
+          POSTGRES_PASSWORD: "foobar123"
     steps:
       - checkout
 
